@@ -1,0 +1,110 @@
+﻿@model InvoiceCreateViewModel
+
+
+<h5 class="card-title">Customer Information</h5>
+<div class="form-group">
+    <label asp-for="Debtor.DebtorType">Customer type</label>
+    <select class="form-control" asp-for="Debtor.DebtorType" asp-items="Html.GetEnumSelectList<DebtorType>()">
+    </select>
+</div>
+
+<div class="form-group">
+    <label>Country</label>
+    <select class="form-control" asp-items="ViewBag.Countries">
+    </select>
+</div>
+
+<div data-validation-required data-customer-group="company" class="form-group d-none">
+    <label>Company name</label>
+    <input type="text" class="form-control" asp-for="Debtor.CompanyName">
+    <span class="text-danger d-none" data-valmsg-replace="true">Company name is required</span>
+</div>
+
+<div data-customer-group="company" class="form-group d-none">
+    <label>VAT Number</label>
+    <input type="text" class="form-control" asp-for="Debtor.CompanyRegistrationNumber">
+</div>
+
+<div data-validation-required data-customer-group="private" class="form-group ">
+    <label>First name</label>
+    <input type="text" class="form-control" asp-for="Debtor.FirstName">
+    <span class="text-danger d-none" data-valmsg-replace="true">First name is required</span>
+</div>
+
+<div  data-customer-group="private" class="form-group">
+    <label>Last Name</label>
+    <input type="text" class="form-control" asp-for="Debtor.LastName">
+</div>
+
+<div class="form-group">
+    <label>Address</label>
+    <input type="text" class="form-control" asp-for="Debtor.Address">
+</div>
+
+<div class="form-group">
+    <label>Zip code</label>
+    <input type="text" class="form-control" asp-for="Debtor.ZipCode">
+</div>
+
+
+<div class="form-group">
+    <label>City</label>
+    <input type="text" class="form-control" asp-for="Debtor.City">
+</div>
+
+<div class="form-group">
+    <label>Customers email</label>
+    <input type="text" class="form-control" asp-for="Debtor.Email">
+</div>
+
+<div class="form-group">
+    <label>Customers phone</label>
+    <input type="text" class="form-control" asp-for="Debtor.Phone">
+</div>
+
+
+<div data-customer-group="private" class="form-group">
+    <label>Customers CPR-number</label>
+    <input type="text" class="form-control" asp-for="Debtor.AccountingDebtorId">
+</div>
+
+<div data-customer-group="private" class="form-group">
+    <label>Customers birthday</label>
+    <input type="text" class="form-control" asp-for="Debtor.PersonBirthday">
+</div>
+
+<script>
+
+    document.getElementsByName("Debtor.DebtorType")[0].addEventListener("change", function () {
+        if (this.value == enums.debtor.private) {
+            document.querySelectorAll('[data-customer-group="company"]').forEach(element => element.classList.add("d-none"));
+            document.querySelectorAll('[data-customer-group="private"]').forEach(element => element.classList.remove("d-none"));
+        } else {
+            document.querySelectorAll('[data-customer-group="private"]').forEach(element => element.classList.add("d-none"));
+            document.querySelectorAll('[data-customer-group="company"]').forEach(element => element.classList.remove("d-none"));
+
+        }
+    })
+
+    function validateInformation() {
+        let requiredFields = document.querySelectorAll("div[data-validation-required]:not(.d-none)");
+        let isValid = true;
+
+        for (let i = 0; i < requiredFields.length; i++) {
+
+            let requiredInput = requiredFields[i].querySelector("input");
+
+            if (requiredInput && requiredInput.value) {
+                requiredFields[i].querySelector("span").classList.add("d-none");
+
+            }
+            else {
+                requiredFields[i].querySelector("span").classList.remove("d-none");
+                isValid = false;
+            }
+        }
+
+        return isValid;
+    }
+
+</script>

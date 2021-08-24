@@ -1,0 +1,108 @@
+﻿@model InvoiceCreateViewModel
+
+
+<form>
+    <div class="card">
+        <div class="card-body">
+            @{
+                await Html.RenderPartialAsync("_Flow.cshtml", Model);
+            }
+        </div>
+    </div>
+
+
+    <div class="card  mt-3">
+        <div class="card-body">
+            @{
+                await Html.RenderPartialAsync("_CustomerInformation.cshtml", Model);
+            }
+        </div>
+    </div>
+
+    <div class="card  mt-3">
+        <div class="card-body">
+            @{
+                await Html.RenderPartialAsync("_InvoiceData.cshtml", Model);
+            }
+        </div>
+    </div>
+
+    <div class="card  mt-3">
+        <div class="card-body">
+            @{
+                await Html.RenderPartialAsync("_Line.cshtml");
+            }
+        </div>
+    </div>
+
+
+
+    <button type="button" id="btnSubmitInvoice" class="btn btn-primary">Submit</button>
+</form>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+        crossorigin="anonymous"></script>
+
+<script>
+    document.getElementById("btnSubmitInvoice").addEventListener("click", function (e) {
+        e.preventDefault();
+
+
+        let lineResult = validateLine();
+        let informatioResult = validateInformation();
+        if (lineResult && informatioResult) {
+
+            let lineArray = getLineArray();
+
+            var model = {
+                CampaignInitialRequest: document.getElementsByName("CampaignInitialRequest")[0].value,
+                Debtor: {
+                    DebtorType: document.getElementsByName("Debtor.DebtorType")[0].value,
+                    CompanyName: document.getElementsByName("Debtor.CompanyName")[0].value,
+                    CompanyRegistrationNumber: document.getElementsByName("Debtor.CompanyRegistrationNumber")[0].value,
+                    FirstName: document.getElementsByName("Debtor.FirstName")[0].value,
+                    LastName: document.getElementsByName("Debtor.LastName")[0].value,
+                    Address: document.getElementsByName("Debtor.Address")[0].value,
+                    ZipCode: document.getElementsByName("Debtor.ZipCode")[0].value,
+                    City: document.getElementsByName("Debtor.City")[0].value,
+                    Email: document.getElementsByName("Debtor.Email")[0].value,
+                    Phone: document.getElementsByName("Debtor.Phone")[0].value,
+                    AccountingDebtorId: document.getElementsByName("Debtor.AccountingDebtorId")[0].value,
+                    PersonBirthday: document.getElementsByName("Debtor.PersonBirthday")[0].value,
+                },
+                Date: document.getElementsByName("Date")[0].value,
+                DueDate: document.getElementsByName("DueDate")[0].value,
+                Comments: document.getElementsByName("Comments")[0].value,
+                ReferenceId: document.getElementsByName("ReferenceId")[0].value,
+                Lines: lineArray
+            }
+
+
+
+
+            $.ajax({
+                type: "POST",
+                contentType: 'application/x-www-form-urlencoded',
+                url: "./add",
+                data: model,
+                success: function (response) {
+                    // ...
+                }
+            });
+
+
+            //fetch('invoice/add', {
+            //    method: 'post',
+            //    headers: { 'Content-Type': 'application/json' },
+            //    body: JSON.stringify({ model: qq
+            //});
+
+
+        }
+    })
+</script>
+
+
+
+

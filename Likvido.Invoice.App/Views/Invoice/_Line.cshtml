@@ -1,0 +1,102 @@
+﻿<button type="button" class="btn btn-success" id="btnNewLine">New Line</button>
+
+<table id="tblLines" class="table table-bordered mt-3">
+    <thead>
+        <tr>
+            <th scope="col">Description</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Price Before VAT</th>
+            <th scope="col">VAT Rate</th>
+            <th scope="col">Total</th>
+            <th scope="col">Remove</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td data-validation-required>
+                <input type="text" class="form-control" />
+                <span class="text-danger d-none" data-valmsg-replace="true">Description is required</span>
+            </td>
+            <td data-validation-required>
+                <input type="text" class="form-control" value="1" />
+                <span class="text-danger d-none" data-valmsg-replace="true">Quantity is required</span>
+            </td>
+            <td data-validation-required>
+                <input type="text" class="form-control" value="0" />
+                <span class="text-danger d-none" data-valmsg-replace="true">Unit net price is required</span>
+            </td>
+            <td><input type="text" class="form-control" value="25" /> </td>
+            <td><span></span> </td>
+            <td><button class="btn btn-danger" onclick="removeRow(event,this)">Remove</button></td>
+        </tr>
+    </tbody>
+</table>
+
+
+<script>
+
+    const defaultRow = document.getElementById("tblLines").rows[1].cloneNode(true);
+
+    document.getElementById("btnNewLine").addEventListener("click", function () {
+        addRow();
+    })
+
+    function validateLine() {
+        let requiredFields = document.querySelectorAll("td[data-validation-required]");
+        let isValid = true;
+
+        for (let i = 0; i < requiredFields.length; i++) {
+
+            let requiredInput = requiredFields[i].querySelector("input");
+
+            if (requiredInput && requiredInput.value) {
+                requiredFields[i].querySelector("span").classList.add("d-none");
+
+            }
+            else {
+                requiredFields[i].querySelector("span").classList.remove("d-none");
+                isValid = false;
+            }
+        }
+
+        return isValid;
+    }
+
+    function getLineArray() {
+
+        var lineArray = [];
+        var rows = document.getElementById("tblLines").rows;
+        for (let i = 1; i < rows.length; i++) {
+
+            let inputs = rows[i].getElementsByTagName("input");
+            lineArray.push(
+                {
+                    UnitNetPrice: inputs[2].value,
+                    Description: inputs[0].value,
+                    Quantity: inputs[1].value,
+                    VatRate: inputs[3].value,
+                    DiscountType: 0,
+                    DiscountValue: 0
+
+                });
+        }
+
+        return lineArray;
+    }
+
+    function addRow() {
+        let clone = defaultRow.cloneNode(true);
+        document.getElementById("tblLines").tBodies[0].appendChild(clone);
+    }
+
+    function removeRow(event, element) {
+        event.preventDefault();
+        element.closest("tr").remove();
+    }
+
+
+    //$(function () {
+    //    $("#datepicker").datepicker();
+    //});
+
+</script>

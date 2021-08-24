@@ -1,0 +1,26 @@
+﻿@model InvoiceCreateViewModel
+
+<h5 class="card-title">Select type of flow</h5>
+<div class="form-group">
+    <label asp-for="CampaignInitialRequest">Startup flow for invoice?</label>
+    <select class="form-control" asp-for="CampaignInitialRequest" asp-items="Html.GetEnumSelectList<CampaignType>()">
+    </select>
+</div>
+<div id="sectionInvoiceType" class="form-group">
+    <label>How to enter the invoice? </label>
+    <select class="form-control">
+        <option selected="selected">Create manual</option>
+    </select>
+</div>
+
+<script>
+
+    document.getElementsByName("CampaignInitialRequest")[0]
+        .addEventListener("click", function () {
+            if (this.value == enums.flow.invoice) {
+                document.getElementById("sectionInvoiceType").classList.add("d-none");
+            } else {
+                document.getElementById("sectionInvoiceType").classList.remove("d-none");
+            }
+        })
+</script>

@@ -1,0 +1,9 @@
+C:\Users\Onur\source\repos\Likvido\Likvido.Invoice.ApiClient\bin\Debug\netcoreapp3.1\Likvido.Invoice.ApiClient.deps.json
+C:\Users\Onur\source\repos\Likvido\Likvido.Invoice.ApiClient\bin\Debug\netcoreapp3.1\Likvido.Invoice.ApiClient.dll
+C:\Users\Onur\source\repos\Likvido\Likvido.Invoice.ApiClient\obj\Debug\netcoreapp3.1\Likvido.Invoice.ApiClient.AssemblyInfoInputs.cache
+C:\Users\Onur\source\repos\Likvido\Likvido.Invoice.ApiClient\obj\Debug\netcoreapp3.1\Likvido.Invoice.ApiClient.AssemblyInfo.cs
+C:\Users\Onur\source\repos\Likvido\Likvido.Invoice.ApiClient\obj\Debug\netcoreapp3.1\Likvido.Invoice.ApiClient.csprojAssemblyReference.cache
+C:\Users\Onur\source\repos\Likvido\Likvido.Invoice.ApiClient\bin\Debug\netcoreapp3.1\Likvido.Invoice.ApiClient.pdb
+C:\Users\Onur\source\repos\Likvido\Likvido.Invoice.ApiClient\obj\Debug\netcoreapp3.1\Likvido.Invoice.ApiClient.csproj.CoreCompileInputs.cache
+C:\Users\Onur\source\repos\Likvido\Likvido.Invoice.ApiClient\obj\Debug\netcoreapp3.1\Likvido.Invoice.ApiClient.dll
+C:\Users\Onur\source\repos\Likvido\Likvido.Invoice.ApiClient\obj\Debug\netcoreapp3.1\Likvido.Invoice.ApiClient.pdb

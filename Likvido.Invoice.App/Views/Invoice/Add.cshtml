@@ -40,11 +40,12 @@
     <button type="button" id="btnSubmitInvoice" class="btn btn-primary">Submit</button>
 </form>
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"
-        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
-        crossorigin="anonymous"></script>
+
 
 <script>
+
+
+
     document.getElementById("btnSubmitInvoice").addEventListener("click", function (e) {
         e.preventDefault();
 
@@ -87,16 +88,21 @@
                 url: "./add",
                 data: model,
                 success: function (response) {
-                    // ...
+                    toastr.success("Invoice successfully created")
+                    //console.log(response)
+                    //if (response.Success) {
+                    //    toastr.success(response.Message)
+                    //} else {
+                    //    toastr.warning(response.Message)
+                    //}
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    toastr.error(xhr.responseText)
                 }
             });
 
 
-            //fetch('invoice/add', {
-            //    method: 'post',
-            //    headers: { 'Content-Type': 'application/json' },
-            //    body: JSON.stringify({ model: qq
-            //});
+     
 
 
         }

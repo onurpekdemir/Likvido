@@ -1,74 +1,90 @@
-﻿using System;
+﻿using AutoMapper;
+using Likvido.Invoice.ApiClient;
+using Likvido.Invoice.App.ViewModels;
+using Likvido.Invoice.Services.Services.Interfaces;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.Extensions.Caching.Memory;
+using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using Likvido.Invoice.App.Models;
-using Likvido.Invoice.ApiClient;
-using Microsoft.Extensions.Caching.Memory;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Newtonsoft.Json;
 
 namespace Likvido.Invoice.App.Controllers
 {
     public class InvoiceController : Controller
     {
-        private readonly ILogger<InvoiceController> _logger;
         private readonly IApiCaller _apiCaller;
-        private readonly IMemoryCache _memCache;
+        private readonly ICountryService _countryService;
+        private readonly IMapper _mapper;
 
-        public InvoiceController(ILogger<InvoiceController> logger, IApiCaller apiCaller, IMemoryCache memCache)
+        public InvoiceController(IApiCaller apiCaller, ICountryService countryService, IMapper mapper)
         {
-            _logger = logger;
             _apiCaller = apiCaller;
-            _memCache = memCache;
+            _countryService = countryService;
+            _mapper = mapper;
         }
 
         public async Task<IActionResult> Index()
         {
-            var apiResult = await _apiCaller.GetAsync<InvoiceListRootViewModel>("Invoices");
-            return View(apiResult.Result);
+            var apiResult = await _apiCaller.GetAsync<InvoiceListViewModel>("Invoices");
+            return View(apiResult?.Data);
         }
 
         [HttpGet]
-        public IActionResult Add()
+        public async Task<IActionResult> Add()
         {
-            ViewBag.Countries = GetCountries();
+            var countries = await _countryService.GetCountries();
+            ViewBag.Countries = _mapper.Map<List<SelectListItem>>(countries);
             return View();
         }
 
         [HttpPost]
         public async Task<IActionResult> Add(InvoiceCreateViewModel model)
         {
-            var apiResult = await _apiCaller.Post("Invoices", model);
-            return null;
-        }
-
-        private IEnumerable<SelectListItem> GetCountries()
-        {
-            if (!_memCache.TryGetValue("countries", out List<SelectListItem> countries))
+            bool isValid;
+            var validationResult = ValidateInvoice(model, out isValid);
+            if (!isValid)
             {
-                var countryList = new List<SelectListItem>
-                {
-                    new SelectListItem{ Text="Denmark", Value = "1", Selected = true },
-                    new SelectListItem{ Text="Turkey", Value = "2", Selected = false },
-                    new SelectListItem{ Text="Germany", Value ="3", Selected = false },
-                    new SelectListItem{ Text="Sweden", Value = "4", Selected = false },
-                    new SelectListItem{ Text="Norway", Value = "5", Selected = false },
-                    new SelectListItem{ Text="Italy", Value = "6", Selected = false },
-                    new SelectListItem{ Text="Greece", Value = "7", Selected = false },
-                    new SelectListItem{ Text="Finland", Value = "8", Selected = false },
-                };
-
-                //Bu satırda belirlediğimiz key'e göre ve ayarladığımız cache özelliklerine göre kategorilerimizi in-memory olarak cache'liyoruz.
-                _memCache.Set("countries", countryList);
-
-                return countryList;
+                return validationResult;
             }
 
-            return countries;
+            var apiResult = await _apiCaller.Post<InvoiceCreateViewModel>("Invoices", model);
+            if (apiResult.Errors != null)
+            {
+                return BadRequest(string.Join('\n', apiResult.Errors.Select(s => s.Title)));
+            }
+
+            return CreatedAtAction(nameof(Add), model);
         }
+
+        private IActionResult ValidateInvoice(InvoiceCreateViewModel model, out bool isValid)
+        {
+            isValid = false;
+
+            if (model.Date > model.DueDate)
+            {
+                return BadRequest("Invoice payment date must be equal or greater than invoice date ");
+            }
+
+            if (model.Debtor.DebtorType == DebtorType.Private && string.IsNullOrWhiteSpace(model.Debtor.FirstName))
+            {
+                return BadRequest("You must enter first name for debtor type of private");
+            }
+
+            if (model.Debtor.DebtorType == DebtorType.Company && string.IsNullOrWhiteSpace(model.Debtor.CompanyName))
+            {
+                return BadRequest("You must enter company name for debtor type of company");
+            }
+
+            if (model.Lines != null && (model.Lines.Count == 0 || model.Lines.Any(s => string.IsNullOrWhiteSpace(s.Description))))
+            {
+                return BadRequest("You must enter at least 1 line and fill in the description correctly");
+            }
+
+            isValid = true;
+            return Ok();
+        }
+
     }
 }

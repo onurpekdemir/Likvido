@@ -1,14 +1,13 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Likvido.Invoice.ApiClient;
+using Likvido.Invoice.ApiClient.Settings;
+using Likvido.Invoice.App.Extensions;
+using Likvido.Invoice.Data.Contexts;
+using Likvido.Invoice.Logging;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 
 namespace Likvido.Invoice.App
 {
@@ -24,9 +23,20 @@ namespace Likvido.Invoice.App
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<InvoiceContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
             services.AddMemoryCache();
+            services.AddAutoMapper(typeof(Startup));
+
             services.Configure<ApiSettings>(Configuration.GetSection("Likvido:Api"));
-            services.AddScoped<IApiCaller, ApiCaller>();
+
+            services.AddApiCaller();
+            services.AddRepositories();
+            services.AddAutoMapper();
+            services.AddServices();
+            services.AddSingleton<ILog, LogNLog>();
+
             services.AddControllersWithViews().AddJsonOptions(options =>
             {
                 options.JsonSerializerOptions.PropertyNameCaseInsensitive = true;
@@ -35,13 +45,12 @@ namespace Likvido.Invoice.App
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory)
         {
             app.UseExceptionHandler("/error");
-
             // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
             app.UseHsts();
-            
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 

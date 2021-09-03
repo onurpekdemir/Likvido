@@ -1,30 +1,39 @@
-﻿@model InvoiceListRootViewModel
+﻿@model List<InvoiceListViewModel>
 
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col">Created Date</th>
-            <th scope="col">Currency</th>
-            <th scope="col">Net Amount</th>
-            <th scope="col">Gross Amount</th>
-            <th scope="col">Vat Amount</th>
-            <th scope="col">Comments</th>
-        </tr>
-    </thead>
-    <tbody>
-        @for (int i = 0; i < Model.Data.Count; i++)
-        {
-            <tr>
-                <th scope="row">@(i+1)</th>
-                <td>@Model.Data[i].Attributes.DateCreated</td>
-                <td>@Model.Data[i].Attributes.Currency</td>
-                <td>@Model.Data[i].Attributes.NetAmount</td>
-                <td>@Model.Data[i].Attributes.GrossAmount</td>
-                <td>@Model.Data[i].Attributes.VatAmount</td>
-                <td>@Model.Data[i].Attributes.InvoiceComments</td>
-            </tr>
-        }
+    <a class="btn btn-success mb-4" asp-area="" asp-controller="invoice" asp-action="add"><i class="fa fa-plus"></i> New Invoice</a>
+    @if (Model == null)
+    {
+        <p>No data found</p>
+    }
+    else
+    {
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Created Date</th>
+                    <th scope="col">Currency</th>
+                    <th scope="col">Net Amount</th>
+                    <th scope="col">Gross Amount</th>
+                    <th scope="col">Vat Amount</th>
+                    <th scope="col">Comments</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (int i = 0; i < Model.Count; i++)
+                {
+                    <tr>
+                        <th scope="row">@(i+1)</th>
+                        <td>@Model[i].Attributes.DateCreated</td>
+                        <td>@Model[i].Attributes.Currency</td>
+                        <td>@Model[i].Attributes.NetAmount</td>
+                        <td>@Model[i].Attributes.GrossAmount</td>
+                        <td>@Model[i].Attributes.VatAmount</td>
+                        <td>@Model[i].Attributes.InvoiceComments</td>
+                    </tr>
+                }
 
-    </tbody>
-</table>
+            </tbody>
+        </table>
+
+    }

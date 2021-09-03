@@ -1,15 +1,32 @@
-﻿
-@{
-    var errorMessage = Convert.ToString( ViewBag.ErrorMessage);
-}
+﻿@model ErrorViewModel
+
 
 <h1 class="text-danger">Error.</h1>
 <h2 class="text-danger">An error occurred while processing your request.</h2>
 
 <h3>Development Mode</h3>
+
+<p>This is the developer page showing the details explicitly.</p>
+
 <p>
-    Swapping to <strong>Development</strong> environment will display more detailed information about the error that occurred.
+    <strong>Error Type:</strong>
 </p>
 <p>
-    <strong>@errorMessage</strong>
+    @(Model.ErrorType == ErrorType.API ? "API Error" : "Application Error")
 </p>
+
+
+<p>
+    <strong>Error Message:</strong>
+</p>
+<p>
+    @Model.Message
+</p>
+
+<p>
+    <strong>Details:</strong>
+</p>
+<p>
+    @Model.Details
+</p>
+

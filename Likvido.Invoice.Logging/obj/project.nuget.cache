@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "oe9QLGmR05wgMOjbs5pR+/md82UyCfwuZGNWJvQPgevzjPrirm8+A9lTs9OPiqB/0v7o/KRVCsqqUv9raJG5gA==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Onur\\source\\repos\\Likvido\\Likvido.Invoice.Logging\\Likvido.Invoice.Logging.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Onur\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\3.1.18\\microsoft.extensions.logging.abstractions.3.1.18.nupkg.sha512",
+    "C:\\Users\\Onur\\.nuget\\packages\\nlog\\5.0.0-preview.1\\nlog.5.0.0-preview.1.nupkg.sha512"
+  ],
+  "logs": []
+}

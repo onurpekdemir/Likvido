@@ -1,0 +1,14 @@
+C:\Users\Onur\source\repos\Likvido\Likvido.Invoice.Services\bin\Debug\netcoreapp3.1\Likvido.Invoice.Services.deps.json
+C:\Users\Onur\source\repos\Likvido\Likvido.Invoice.Services\bin\Debug\netcoreapp3.1\Likvido.Invoice.Services.dll
+C:\Users\Onur\source\repos\Likvido\Likvido.Invoice.Services\bin\Debug\netcoreapp3.1\Likvido.Invoice.Services.pdb
+C:\Users\Onur\source\repos\Likvido\Likvido.Invoice.Services\bin\Debug\netcoreapp3.1\Likvido.Invoice.Data.dll
+C:\Users\Onur\source\repos\Likvido\Likvido.Invoice.Services\bin\Debug\netcoreapp3.1\Likvido.Invoice.Entities.dll
+C:\Users\Onur\source\repos\Likvido\Likvido.Invoice.Services\bin\Debug\netcoreapp3.1\Likvido.Invoice.Data.pdb
+C:\Users\Onur\source\repos\Likvido\Likvido.Invoice.Services\bin\Debug\netcoreapp3.1\Likvido.Invoice.Entities.pdb
+C:\Users\Onur\source\repos\Likvido\Likvido.Invoice.Services\obj\Debug\netcoreapp3.1\Likvido.Invoice.Services.csprojAssemblyReference.cache
+C:\Users\Onur\source\repos\Likvido\Likvido.Invoice.Services\obj\Debug\netcoreapp3.1\Likvido.Invoice.Services.AssemblyInfoInputs.cache
+C:\Users\Onur\source\repos\Likvido\Likvido.Invoice.Services\obj\Debug\netcoreapp3.1\Likvido.Invoice.Services.AssemblyInfo.cs
+C:\Users\Onur\source\repos\Likvido\Likvido.Invoice.Services\obj\Debug\netcoreapp3.1\Likvido.Invoice.Services.csproj.CoreCompileInputs.cache
+C:\Users\Onur\source\repos\Likvido\Likvido.Invoice.Services\obj\Debug\netcoreapp3.1\Likvido.Invoice.Services.csproj.CopyComplete
+C:\Users\Onur\source\repos\Likvido\Likvido.Invoice.Services\obj\Debug\netcoreapp3.1\Likvido.Invoice.Services.dll
+C:\Users\Onur\source\repos\Likvido\Likvido.Invoice.Services\obj\Debug\netcoreapp3.1\Likvido.Invoice.Services.pdb

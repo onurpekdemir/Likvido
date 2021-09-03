@@ -1,5 +1,8 @@
-﻿using Microsoft.Extensions.Options;
-using System;
+﻿using Likvido.Invoice.ApiClient.Errors;
+using Likvido.Invoice.ApiClient.Response;
+using Likvido.Invoice.ApiClient.Settings;
+using Microsoft.Extensions.Options;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
@@ -17,50 +20,59 @@ namespace Likvido.Invoice.ApiClient
             _options = options;
         }
 
-        public async Task<ApiResult> GetAsync<T>(string path)
+        public async Task<ApiResponse<T>> GetAsync<T>(string path)
         {
             using (var httpClient = new HttpClient())
             {
-                httpClient.DefaultRequestHeaders.Add("X-ApiKey", _options.Value.Key);
-                httpClient.DefaultRequestHeaders.TryAddWithoutValidation("Content-Type", "application/json; charset=utf-8");
+                SetHeaders(httpClient);
 
                 using (var response = await httpClient.GetAsync(_options.Value.Uri + path))
                 {
-                    string apiResponseString = await response.Content.ReadAsStringAsync();
-                    ApiResponse apiResponse = JsonSerializer.Deserialize<ApiResponse>(apiResponseString);
+                    CheckApiInternalError(response);
 
-                    return new ApiResult
-                    {
-                        Result = Newtonsoft.Json.JsonConvert.DeserializeObject<T>(apiResponseString),
-                        HttpStatusCode = response.StatusCode,
-                        Message = apiResponse.Title
-                    };
+                    string apiResponseString = await response.Content.ReadAsStringAsync();
+
+                    var apiResponse = Newtonsoft.Json.JsonConvert.DeserializeObject<ApiResponse<T>>(apiResponseString);
+
+                    return apiResponse;
                 }
             }
         }
 
-        public async Task<ApiResult> Post(string path, object data)
+        public async Task<ApiResponse<T>> Post<T>(string path, object data)
         {
             using (var httpClient = new HttpClient())
             {
-                httpClient.DefaultRequestHeaders.Add("X-ApiKey", _options.Value.Key);
-                httpClient.DefaultRequestHeaders.TryAddWithoutValidation("Content-Type", "application/json; charset=utf-8");
+                SetHeaders(httpClient);
 
                 string contentString = JsonSerializer.Serialize(data);
                 using (var response = await httpClient.PostAsync(_options.Value.Uri + path,
                     new StringContent(contentString, Encoding.UTF8, "application/json")))
                 {
-                    string apiResponseString = await response.Content.ReadAsStringAsync();
-                    ApiResponseList apiResponse = Newtonsoft.Json.JsonConvert.DeserializeObject<ApiResponseList>(apiResponseString);
+                    CheckApiInternalError(response);
 
-                    return new ApiResult
+                    if (!response.IsSuccessStatusCode)
                     {
-                        // Result = JsonConvert.DeserializeObject<T>(apiResponse),
-                        HttpStatusCode = response.StatusCode,
-                        Message = apiResponse != null ? string.Join(',', apiResponse.Errors.Select(s => s.Title)) : ""
-                    };
+                        string apiResponseString = await response.Content.ReadAsStringAsync();
+                        var result = Newtonsoft.Json.JsonConvert.DeserializeObject<ApiResponse<T>>(apiResponseString);
+                    }
+
+                    return new ApiResponse<T> { };
                 }
             }
+        }
+        private void CheckApiInternalError(HttpResponseMessage response)
+        {
+            if (response.StatusCode == System.Net.HttpStatusCode.InternalServerError)
+            {
+                throw new ApiException((int)response.StatusCode, "Error occured while fetching/sending data from the API");
+            }
+        }
+
+        private void SetHeaders(HttpClient httpClient)
+        {
+            httpClient.DefaultRequestHeaders.Add("X-ApiKey", _options.Value.Key);
+            httpClient.DefaultRequestHeaders.TryAddWithoutValidation("Content-Type", "application/json; charset=utf-8");
         }
     }
 }

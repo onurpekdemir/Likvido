@@ -21,13 +21,13 @@ using Likvido.Invoice.App;
 #nullable disable
 #nullable restore
 #line 2 "C:\Users\Onur\source\repos\Likvido\Likvido.Invoice.App\Views\_ViewImports.cshtml"
-using Likvido.Invoice.App.Models;
+using Likvido.Invoice.App.ViewModels;
 
 #line default
 #line hidden
 #nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"8487b07a3f4c66b4f54a2cc9839164a0cb3dd7b9", @"/Views/Invoice/_Flow.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"cb50da5548fa1e3fc913bce08d5d3cb6e948619e", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"597498af5eaa4d491b595d5c8ae1dee354ab3702", @"/Views/_ViewImports.cshtml")]
     public class Views_Invoice__Flow : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<InvoiceCreateViewModel>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("class", new global::Microsoft.AspNetCore.Html.HtmlString("form-control"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -59,7 +59,7 @@ using Likvido.Invoice.App.Models;
         public async override global::System.Threading.Tasks.Task ExecuteAsync()
         {
             WriteLiteral("\r\n<h5 class=\"card-title\">Select type of flow</h5>\r\n<div class=\"form-group\">\r\n    ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("label", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "8487b07a3f4c66b4f54a2cc9839164a0cb3dd7b94164", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("label", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "8487b07a3f4c66b4f54a2cc9839164a0cb3dd7b94168", async() => {
                 WriteLiteral("Startup flow for invoice?");
             }
             );
@@ -81,7 +81,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_LabelTagHelper.For = ModelExpressionProvid
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n    ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("select", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "8487b07a3f4c66b4f54a2cc9839164a0cb3dd7b95680", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("select", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "8487b07a3f4c66b4f54a2cc9839164a0cb3dd7b95684", async() => {
                 WriteLiteral("\r\n    ");
             }
             );
@@ -112,7 +112,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_SelectTagHelper.Items = Html.GetEnumSelect
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n</div>\r\n<div id=\"sectionInvoiceType\" class=\"form-group\">\r\n    <label>How to enter the invoice? </label>\r\n    <select class=\"form-control\">\r\n        ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "8487b07a3f4c66b4f54a2cc9839164a0cb3dd7b97913", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "8487b07a3f4c66b4f54a2cc9839164a0cb3dd7b97917", async() => {
                 WriteLiteral("Create manual");
             }
             );

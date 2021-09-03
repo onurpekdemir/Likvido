@@ -3,11 +3,39 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30503.244
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Likvido.Invoice.App", "Likvido.Invoice.App\Likvido.Invoice.App.csproj", "{FF9F3594-784B-4126-B351-A48C6D68B12C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Likvido.Invoice.App", "Likvido.Invoice.App\Likvido.Invoice.App.csproj", "{FF9F3594-784B-4126-B351-A48C6D68B12C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{8320644B-08C8-4E65-9E22-FE01481F16B0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Likvido.Invoice.ApiClient", "Likvido.Invoice.ApiClient\Likvido.Invoice.ApiClient.csproj", "{8CCD46F9-9A73-4CD0-8FC2-718B4205C22F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Likvido.Invoice.ApiClient", "Likvido.Invoice.ApiClient\Likvido.Invoice.ApiClient.csproj", "{8CCD46F9-9A73-4CD0-8FC2-718B4205C22F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "doc", "doc", "{883CB073-2A26-4B93-A4CE-25AE9EDAE215}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\..\Desktop\WebApplication1\WebApplication1\about.txt = ..\..\..\Desktop\WebApplication1\WebApplication1\about.txt
+		..\..\..\Desktop\WebApplication1\WebApplication1\readme.txt = ..\..\..\Desktop\WebApplication1\WebApplication1\readme.txt
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{BE0E1DD9-FA5D-4E38-959B-362CC60BE241}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{1C70CF13-5367-449E-B0ED-3CFA06AC0BC4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{BA5E8E52-50DB-4B28-81A9-86EB450ACDA4}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Likvido.Invoice.Entities", "Likvido.Invoice.Entities\Likvido.Invoice.Entities.csproj", "{D096196F-2219-4914-AB3A-DD473A2D2E9D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Likvido.Invoice.Services", "Likvido.Invoice.Services\Likvido.Invoice.Services.csproj", "{6FBDCFA1-F9E9-4F27-9631-A86FBB84150F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Logging", "Logging", "{582A3FBC-3124-4260-8460-1DCE7C169531}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{51990F9D-1A1C-4C76-A4F2-83BD2FF10D3D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Likvido.Invoice.Logging", "Likvido.Invoice.Logging\Likvido.Invoice.Logging.csproj", "{D5E6D0EE-BDBD-4DCE-A7BE-5EBE993DD732}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Likvido.Invoice.Data", "Likvido.Invoice.Data\Likvido.Invoice.Data.csproj", "{526DBBB0-3FFB-408E-8D4A-93B066252466}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Likvido.Invoice.Services.Test", "Likvido.Invoice.Services.Test\Likvido.Invoice.Services.Test.csproj", "{9E0E5778-FEB6-4975-913B-43A3243641DA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Likvido.Invoice.App.Test", "Likvido.Invoice.App.Test\Likvido.Invoice.App.Test.csproj", "{3904ADC2-718B-40B1-90B6-046A7B633607}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,6 +51,30 @@ Global
 		{8CCD46F9-9A73-4CD0-8FC2-718B4205C22F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8CCD46F9-9A73-4CD0-8FC2-718B4205C22F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8CCD46F9-9A73-4CD0-8FC2-718B4205C22F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D096196F-2219-4914-AB3A-DD473A2D2E9D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D096196F-2219-4914-AB3A-DD473A2D2E9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D096196F-2219-4914-AB3A-DD473A2D2E9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D096196F-2219-4914-AB3A-DD473A2D2E9D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6FBDCFA1-F9E9-4F27-9631-A86FBB84150F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6FBDCFA1-F9E9-4F27-9631-A86FBB84150F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6FBDCFA1-F9E9-4F27-9631-A86FBB84150F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6FBDCFA1-F9E9-4F27-9631-A86FBB84150F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D5E6D0EE-BDBD-4DCE-A7BE-5EBE993DD732}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D5E6D0EE-BDBD-4DCE-A7BE-5EBE993DD732}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D5E6D0EE-BDBD-4DCE-A7BE-5EBE993DD732}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D5E6D0EE-BDBD-4DCE-A7BE-5EBE993DD732}.Release|Any CPU.Build.0 = Release|Any CPU
+		{526DBBB0-3FFB-408E-8D4A-93B066252466}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{526DBBB0-3FFB-408E-8D4A-93B066252466}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{526DBBB0-3FFB-408E-8D4A-93B066252466}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{526DBBB0-3FFB-408E-8D4A-93B066252466}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9E0E5778-FEB6-4975-913B-43A3243641DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9E0E5778-FEB6-4975-913B-43A3243641DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9E0E5778-FEB6-4975-913B-43A3243641DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9E0E5778-FEB6-4975-913B-43A3243641DA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3904ADC2-718B-40B1-90B6-046A7B633607}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3904ADC2-718B-40B1-90B6-046A7B633607}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3904ADC2-718B-40B1-90B6-046A7B633607}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3904ADC2-718B-40B1-90B6-046A7B633607}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -30,6 +82,16 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{FF9F3594-784B-4126-B351-A48C6D68B12C} = {8320644B-08C8-4E65-9E22-FE01481F16B0}
 		{8CCD46F9-9A73-4CD0-8FC2-718B4205C22F} = {8320644B-08C8-4E65-9E22-FE01481F16B0}
+		{BE0E1DD9-FA5D-4E38-959B-362CC60BE241} = {8320644B-08C8-4E65-9E22-FE01481F16B0}
+		{1C70CF13-5367-449E-B0ED-3CFA06AC0BC4} = {BE0E1DD9-FA5D-4E38-959B-362CC60BE241}
+		{BA5E8E52-50DB-4B28-81A9-86EB450ACDA4} = {8320644B-08C8-4E65-9E22-FE01481F16B0}
+		{D096196F-2219-4914-AB3A-DD473A2D2E9D} = {1C70CF13-5367-449E-B0ED-3CFA06AC0BC4}
+		{6FBDCFA1-F9E9-4F27-9631-A86FBB84150F} = {BA5E8E52-50DB-4B28-81A9-86EB450ACDA4}
+		{582A3FBC-3124-4260-8460-1DCE7C169531} = {BE0E1DD9-FA5D-4E38-959B-362CC60BE241}
+		{D5E6D0EE-BDBD-4DCE-A7BE-5EBE993DD732} = {582A3FBC-3124-4260-8460-1DCE7C169531}
+		{526DBBB0-3FFB-408E-8D4A-93B066252466} = {1C70CF13-5367-449E-B0ED-3CFA06AC0BC4}
+		{9E0E5778-FEB6-4975-913B-43A3243641DA} = {51990F9D-1A1C-4C76-A4F2-83BD2FF10D3D}
+		{3904ADC2-718B-40B1-90B6-046A7B633607} = {51990F9D-1A1C-4C76-A4F2-83BD2FF10D3D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7AF862DC-E31C-4118-A206-820E9FEB5481}
